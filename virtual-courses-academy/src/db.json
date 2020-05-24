@@ -1,0 +1,29 @@
+{
+  "Users": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@admin.com",
+      "password": "admin",
+      "isBlocked": false,
+      "role": 1
+    },
+    {
+      "id": 1,
+      "name": "Test",
+      "email": "test@admin.com",
+      "password": "test",
+      "isBlocked": false,
+      "role": 0
+    }
+  ],
+  "Courses": [
+    {
+      "id": 2,
+      "title": "Microservices",
+      "description": "learn all about microservices architecture",
+      "userRatings": [],
+      "participants": []
+    }
+  ] 
+}

@@ -1,0 +1,24 @@
+import { Injectable } from '@angular/core';
+import { CanLoad, Router } from '@angular/router';
+import { AuthenticationService } from '../../auth/services/auth.service';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class AuthGuard implements CanLoad {
+
+    constructor(private authService: AuthenticationService,
+        private router: Router) {
+    }
+
+    canLoad(): boolean {
+        const user = this.authService.getLoggedUser();
+        if (!user) {
+            this.router.navigate(['auth/login']);
+            alert('hi u here')
+            return false;
+        }
+
+        return true;
+    }
+}

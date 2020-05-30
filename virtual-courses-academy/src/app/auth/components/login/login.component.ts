@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../services/auth.service';
+import {AuthenticationService} from '../../services/auth.service';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {Router} from '@angular/router';

@@ -9,7 +9,6 @@ import { environment } from '../../../environments/environment';
     providedIn: 'root'
 })
 export class AuthenticationService {
-    // readonly url = 'http://localhost:3000/users';
     readonly loggedUserStorageKey = 'loggedUser';
 
     private hasLoggedIn$ = new BehaviorSubject<boolean>(false);
@@ -28,7 +27,14 @@ export class AuthenticationService {
     }
 
     register(user: User): Observable<User> {
-        return this.http.post<User>(`${environment.apiUrl}`, user);
+        const userToAdd = {
+            "name": user.name,
+            "email": user.email,
+            "password": user.password,
+            "isBlocked": false,
+            "roleId": 0
+        }
+        return this.http.post<User>(`${environment.apiUrl}/Users`, userToAdd);
     }
 
     logout(): void {

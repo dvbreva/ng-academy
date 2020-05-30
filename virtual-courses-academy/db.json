@@ -6,15 +6,23 @@
       "email": "admin@admin.com",
       "password": "admin",
       "isBlocked": false,
-      "role": 1
+      "roleId": 1
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "Test",
       "email": "test@admin.com",
       "password": "test",
       "isBlocked": false,
-      "role": 0
+      "roleId": 0
+    },
+    {
+      "name": "testing adding",
+      "email": "test@test.com",
+      "password": "test123",
+      "isBlocked": false,
+      "roleId": 0,
+      "id": 3
     }
   ],
   "Courses": [
@@ -25,5 +33,5 @@
       "userRatings": [],
       "participants": []
     }
-  ] 
+  ]
 }

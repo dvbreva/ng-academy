@@ -12,6 +12,9 @@ export class CourseCardComponent {
 
   @Output() courseSelected = new EventEmitter<number>();
   @Output() courseDeleted = new EventEmitter<number>();
+  @Output() ratingChanged = new EventEmitter<{id: number, currentRating: number, newRating: number}>();
+
+  currentRate: number;
 
   constructor() {
     this.course = {
@@ -38,4 +41,7 @@ export class CourseCardComponent {
     this.courseDeleted.emit(this.course.id);
   }
 
+  onRateChange(): void {
+    this.ratingChanged.emit({id: this.course.id, currentRating: this.course.rating, newRating: this.currentRate});
+  }
 }

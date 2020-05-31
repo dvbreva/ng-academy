@@ -87,6 +87,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
+  onRatingChanged(value: any): void {
+    console.log("Incoming value", value)
+    const average = (value.newRating + value.currentRating) / 2;
+  }
+
   private getCourses(searchValue?: string): void {
     this.coursesService.getCourses(searchValue).pipe(
       // map(response => response.filter(x => x.rating > 7)),

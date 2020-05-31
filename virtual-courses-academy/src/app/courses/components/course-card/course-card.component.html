@@ -7,11 +7,12 @@
 
         <div>
             <div>
-                <span>Rating: {{course.rating | number: '1.1-2'}}</span>
+                <span>Created on: {{course.createdOn | date}}</span>
             </div>
 
-            <div>
-                <span>Created on: {{course.createdOn | date}}</span>
+            <div class="mt-1">
+                <span>Average Rating: {{course.rating | number: '1.1-2'}}</span>
+                <ngb-rating [(rate)]="currentRate" (rateChange)="onRateChange()"></ngb-rating>
             </div>
         </div>
 

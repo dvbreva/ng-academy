@@ -32,7 +32,7 @@ export class CoursesService {
 
     saveCourse(course: Course): Observable<Course> {
         if (course.id) {
-            return this.updateCourse(course);
+           return this.updateCourse(course);
         } else {
             return this.addCourse(course);
         }

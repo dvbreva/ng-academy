@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoursesComponent } from './courses.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CourseCardComponent } from './components/course-card/course-card.component';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -12,11 +14,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CourseRoutingModule
+    CourseRoutingModule,
+   // NgbModule
   ],
   declarations: [
     CoursesComponent,
     DashboardComponent,
+    CourseCardComponent
   ]
 })
 export class CoursesModule { }

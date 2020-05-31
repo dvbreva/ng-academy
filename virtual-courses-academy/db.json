@@ -6,15 +6,11 @@
       "email": "admin@admin.com",
       "password": "admin",
       "isBlocked": false,
-      "roleId": 1
-    },
-    {
-      "id": 2,
-      "name": "Test",
-      "email": "test@admin.com",
-      "password": "test",
-      "isBlocked": false,
-      "roleId": 0
+      "roleId": 1,
+      "favouriteCourses": [
+        1,
+        2
+      ]
     },
     {
       "name": "testing adding",
@@ -22,16 +18,24 @@
       "password": "test123",
       "isBlocked": false,
       "roleId": 0,
-      "id": 3
+      "id": 3,
+      "favouriteCourses": []
     }
   ],
   "Courses": [
     {
+      "id": 1,
+      "name": "Test course",
+      "description": "learn all about angular",
+      "rating": 0,
+      "createdOn": "2020-05-05"
+    },
+    {
       "id": 2,
-      "title": "Microservices",
+      "name": "Microservices",
       "description": "learn all about microservices architecture",
-      "userRatings": [],
-      "participants": []
+      "rating": 0,
+      "createdOn": "2020-05-05"
     }
   ]
 }

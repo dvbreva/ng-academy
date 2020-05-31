@@ -20,6 +20,10 @@ export class AuthenticationService {
         return this.http.get<User[]>(`${environment.apiUrl}/Users`);
     }
 
+    getUserById(id: number): Observable<User[]> {
+        return this.http.get<User[]>(`${environment.apiUrl}/Users/${id}`);
+    }
+
     login(email: string, password: string): Observable<User> {
         return this.getUsers().pipe(
             map((response: User[]) => response.find(user => user.email === email && user.password === password))
@@ -32,7 +36,8 @@ export class AuthenticationService {
             "email": user.email,
             "password": user.password,
             "isBlocked": false,
-            "roleId": 0
+            "roleId": 0,
+            "favouriteCourses": []
         }
         return this.http.post<User>(`${environment.apiUrl}/Users`, userToAdd);
     }
@@ -51,6 +56,11 @@ export class AuthenticationService {
 
     getLoggedUser(): User {
         return JSON.parse(localStorage.getItem(this.loggedUserStorageKey));
+    }
+
+    getLoggedUserId(): number {
+        const user = this.getLoggedUser();
+        return user.id;
     }
 
     setHasLoggedIn(isLogged: boolean): void {

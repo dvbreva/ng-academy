@@ -11,11 +11,11 @@ const routes: Route[] = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
     canLoad: [NonAuthenticatedGuard]
   },
-  /* {
+  {
      path: 'courses',
      loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule),
      canLoad: [AuthGuard]
-   }, */
+  },
   {
     path: '',
     pathMatch: 'full',

@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    alert('hi bitch')
     this.errorMessage = null;
 
     const email = this.form.controls.email.value;
@@ -51,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authService.setLoggedUser(response);
 
       // redirect to main app
-      //this.router.navigate(['movies/movies-card-list']);
+      this.router.navigate(['courses/dashboard']);
     });
   }
 

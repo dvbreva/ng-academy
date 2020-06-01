@@ -22,6 +22,11 @@ const routes: Route[] = [
     redirectTo: 'courses'
   },
   {
+    path: 'users',
+    loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
+    canLoad: [AuthGuard]
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }

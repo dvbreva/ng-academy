@@ -1,0 +1,21 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users; let i = index">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm mr-1" (click)="onDeleteClick(user)">Delete</button>
+                <button *ngIf=!user.isBlocked type="button" class="btn btn-secondary btn-sm" (click)="onBlockClick(user)">Block</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

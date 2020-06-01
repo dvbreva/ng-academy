@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthenticationService } from './auth/services/auth.service';
+import { Role } from './utils/enums/role.enum';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { AuthenticationService } from './auth/services/auth.service';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'virtual-courses';
   hasLoggedUser: boolean;
+  isAdmin: boolean;
 
   destroy$ = new Subject<boolean>();
 
@@ -23,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.authService.getHasLoggedIn().pipe(
       takeUntil(this.destroy$)
     ).subscribe(response => this.hasLoggedUser = response);
-    console.log(this.hasLoggedUser)
+    this.isAdmin = this.checkAdminRole();
   }
 
   ngOnDestroy(): void {
@@ -34,5 +36,13 @@ export class AppComponent implements OnInit, OnDestroy {
   onLogout(): void {
     this.authService.logout();
     this.router.navigate(['auth/login']);
+  }
+
+  private checkAdminRole = (): boolean => {
+    const user = this.authService.getLoggedUser();
+    if(user && user.roleId == Role.Admin) {
+      return true;
+    }
+    return false;
   }
 }

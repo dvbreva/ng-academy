@@ -20,6 +20,15 @@
       "roleId": 0,
       "id": 3,
       "favouriteCourses": []
+    },
+    {
+      "name": "testing adding 23",
+      "email": "tes2t@test.com",
+      "password": "test123",
+      "isBlocked": true,
+      "roleId": 0,
+      "id": 4,
+      "favouriteCourses": []
     }
   ],
   "Courses": [

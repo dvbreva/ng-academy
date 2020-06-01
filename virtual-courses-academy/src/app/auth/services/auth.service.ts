@@ -42,6 +42,14 @@ export class AuthenticationService {
         return this.http.post<User>(`${environment.apiUrl}/Users`, userToAdd);
     }
 
+    deleteUser(id: number): Observable<User> {
+        return this.http.delete<User>(`${environment.apiUrl}/Users/${id}`);
+    }
+
+    blockUser(id: number): Observable<User> {
+        return this.http.delete<User>(`${environment.apiUrl}/Users/${id}`);
+    }
+
     logout(): void {
         localStorage.removeItem(this.loggedUserStorageKey);
 

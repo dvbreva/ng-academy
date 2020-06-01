@@ -22,7 +22,7 @@
 
 <div class="row mb-2">
   <div class="col-md-4" *ngFor="let course of courses">
-    <course-card [course]="course"
+    <course-card [course]="course" [isAdmin]="isAdmin"
      (courseSelected)="onCourseSelected($event)" 
      (courseDeleted)="onDelete($event)"
      (ratingChanged)="onRatingChanged($event)"></course-card>

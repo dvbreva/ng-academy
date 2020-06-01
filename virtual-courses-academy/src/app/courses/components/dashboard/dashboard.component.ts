@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { CoursesService } from '../../services/course.service';
 import { AuthenticationService } from 'src/app/auth/services/auth.service';
+import { User } from 'src/app/auth/models/user.interface';
+import { Role } from 'src/app/utils/enums/role.enum';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   favouriteCourses: Course[];
   selectedCourse: Course;
   selectedCourseTitle: string;
+  isAdmin: boolean;
 
   formGroup: FormGroup;
 
@@ -29,10 +32,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getCourses();
-    console.log(this.courses)
+
     this.formGroup = this.fb.group({
       search: ['']
     });
+
+    this.isAdmin = this.checkAdminRole();
   }
 
   ngOnDestroy(): void {
@@ -103,4 +108,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
+  private checkAdminRole = (): boolean => {
+    const user = this.authService.getLoggedUser();
+    if(user.roleId == Role.Admin) {
+      return true;
+    }
+    return false;
+  }
 }

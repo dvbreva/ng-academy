@@ -15,7 +15,6 @@ export class NonAuthenticatedGuard implements CanLoad {
         const user = this.authService.getLoggedUser();
         if (user) {
             this.router.navigate(['courses/dashboard']);
-            alert('hi u here')
             return false;
         }
 

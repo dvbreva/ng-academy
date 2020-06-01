@@ -9,6 +9,7 @@ import { Course } from '../../models/course.interface';
 export class CourseCardComponent {
 
   @Input() course: Course;
+  @Input() isAdmin: boolean;
 
   @Output() courseSelected = new EventEmitter<number>();
   @Output() courseDeleted = new EventEmitter<number>();
@@ -23,6 +24,7 @@ export class CourseCardComponent {
       description: '',
       rating: 0
     };
+    this.isAdmin=false;
   }
 
   getDescription(): string {

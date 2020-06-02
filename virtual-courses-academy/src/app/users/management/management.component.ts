@@ -3,7 +3,6 @@ import { User } from 'src/app/auth/models/user.interface';
 import { AuthenticationService } from 'src/app/auth/services/auth.service';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-management',
@@ -31,8 +30,9 @@ export class ManagementComponent implements OnInit {
   }
 
   onBlockClick(user: any) : void {
-    this.authService.blockUser(user.id).subscribe(response => {
+    this.authService.blockUser(user).subscribe(response => {
       alert('successfully blocked')
+      this.getUsers();
     }, error => {
       console.log(error);
     });

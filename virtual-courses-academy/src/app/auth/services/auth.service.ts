@@ -46,8 +46,16 @@ export class AuthenticationService {
         return this.http.delete<User>(`${environment.apiUrl}/Users/${id}`);
     }
 
-    blockUser(id: number): Observable<User> {
-        return this.http.delete<User>(`${environment.apiUrl}/Users/${id}`);
+    blockUser(user: User): Observable<User> {
+        const data = {
+            "name": user.name,
+            "email": user.email,
+            "password": user.password,
+            "isBlocked": true,
+            "roleId": user.roleId,
+            "favouriteCourses": user.favouriteCourses
+        }
+        return this.http.put<User>(`${environment.apiUrl}/Users/${user.id}`, data);
     }
 
     logout(): void {

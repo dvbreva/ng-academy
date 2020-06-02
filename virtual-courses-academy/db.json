@@ -13,13 +13,13 @@
       ]
     },
     {
-      "name": "testing adding",
-      "email": "test@test.com",
+      "name": "testing adwwding 23",
+      "email": "tes2et@test.com",
       "password": "test123",
-      "isBlocked": false,
+      "isBlocked": true,
       "roleId": 0,
-      "id": 3,
-      "favouriteCourses": []
+      "favouriteCourses": [],
+      "id": 2
     },
     {
       "name": "testing adding 23",

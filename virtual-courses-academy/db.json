@@ -1,8 +1,6 @@
 {
   "Users": [
     {
-      "id": 1,
-      "name": "Admin",
       "email": "admin@admin.com",
       "password": "admin",
       "isBlocked": false,
@@ -10,7 +8,8 @@
       "favouriteCourses": [
         1,
         2
-      ]
+      ],
+      "id": 1
     },
     {
       "name": "testing adwwding 23",

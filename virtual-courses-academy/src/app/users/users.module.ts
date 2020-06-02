@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsersComponent } from './users.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { ManagementComponent } from './management/management.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import { ManagementComponent } from './management/management.component';
   ],
   declarations: [
     UsersComponent,
-    ManagementComponent
+    ManagementComponent,
+    EditProfileComponent,
+    ChangePasswordComponent
   ]
 })
 export class UsersModule { }

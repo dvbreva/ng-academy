@@ -5,7 +5,7 @@ import { User } from 'src/app/auth/models/user.interface';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/auth/services/auth.service';
 import { takeUntil } from 'rxjs/operators';
-import { UsersService } from '../services/user.service';
+import { UsersService } from '../../services/user.service';
 
 @Component({
   selector: 'app-edit-profile',

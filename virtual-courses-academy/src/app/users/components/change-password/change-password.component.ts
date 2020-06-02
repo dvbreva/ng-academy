@@ -4,7 +4,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/auth/services/auth.service';
-import { UsersService } from '../services/user.service';
+import { UsersService } from '../../services/user.service';
 import { User } from 'src/app/auth/models/user.interface';
 
 @Component({

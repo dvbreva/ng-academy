@@ -11,52 +11,52 @@ import { User } from 'src/app/auth/models/user.interface';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-change-password',
-  templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.scss']
+	selector: 'app-change-password',
+	templateUrl: './change-password.component.html',
+	styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
 
-  user: User;
-  formGroup: FormGroup;
-  destroy$ = new Subject<boolean>();
+	user: User;
+	formGroup: FormGroup;
+	destroy$ = new Subject<boolean>();
 
-  constructor(private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private authService: AuthenticationService,
-    private userService: UsersService,
-    private toastr: ToastrService) {
-  }
+	constructor(private fb: FormBuilder,
+		private router: Router,
+		private route: ActivatedRoute,
+		private authService: AuthenticationService,
+		private userService: UsersService,
+		private toastr: ToastrService) {
+	}
 
-  ngOnInit(): void {
-    this.user = this.authService.getLoggedUser();
-    this.buildForm();
-  }
+	ngOnInit(): void {
+		this.user = this.authService.getLoggedUser();
+		this.buildForm();
+	}
 
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
+	ngOnDestroy(): void {
+		this.destroy$.next(true);
+		this.destroy$.unsubscribe();
+	}
 
-  onSubmit(): void {
-    const formData = this.formGroup.value;
+	onSubmit(): void {
+		const formData = this.formGroup.value;
 
-    this.userService.updateBasicInfo(this.user, formData).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(res => {
-      this.router.navigate(['/courses']);
-      this.toastr.success('Successfully changed password!');
-    }, error => {
-      this.toastr.error('Some error occurred.')
-    });
-  }
+		this.userService.updateBasicInfo(this.user, formData).pipe(
+			takeUntil(this.destroy$)
+		).subscribe(res => {
+			this.router.navigate(['/courses']);
+			this.toastr.success('Successfully changed password!');
+		}, error => {
+			this.toastr.error('Some error occurred.')
+		});
+	}
 
-  private buildForm(): void {
-    this.formGroup = this.fb.group({
-      password: ['', [Validators.required, Validators.minLength(5)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(5)]]
-    });
-  }
+	private buildForm(): void {
+		this.formGroup = this.fb.group({
+			password: ['', [Validators.required, Validators.minLength(5)]],
+			confirmPassword: ['', [Validators.required, Validators.minLength(5)]]
+		});
+	}
 }
 

@@ -11,93 +11,92 @@ import { Role } from 'src/app/utils/enums/role.enum';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+	selector: 'app-dashboard',
+	templateUrl: './dashboard.component.html',
+	styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  courses: Course[];
-  favouriteCourses: Course[];
-  selectedCourse: Course;
-  selectedCourseTitle: string;
-  isAdmin: boolean;
+	courses: Course[];
+	favouriteCourses: Course[];
+	selectedCourse: Course;
+	isAdmin: boolean;
 
-  formGroup: FormGroup;
+	formGroup: FormGroup;
 
-  destroy$ = new Subject<boolean>();
+	destroy$ = new Subject<boolean>();
 
-  constructor(private coursesService: CoursesService,
-    private authService: AuthenticationService,
-    private fb: FormBuilder,
-    private toastr: ToastrService) {
-  }
+	constructor(private coursesService: CoursesService,
+		private authService: AuthenticationService,
+		private fb: FormBuilder,
+		private toastr: ToastrService) {
+	}
 
-  ngOnInit(): void {
-    this.getCourses();
+	ngOnInit(): void {
+		this.getCourses();
 
-    this.formGroup = this.fb.group({
-      search: ['']
-    });
+		this.formGroup = this.fb.group({
+			search: ['']
+		});
 
-    this.isAdmin = this.checkAdminRole();
-  }
+		this.isAdmin = this.checkAdminRole();
+	}
 
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
+	ngOnDestroy(): void {
+		this.destroy$.next(true);
+		this.destroy$.unsubscribe();
+	}
 
-  onCourseSelected(id: number): void {
-    const currentUser = this.authService.getLoggedUser();
+	onCourseSelected(id: number): void {
+		const currentUser = this.authService.getLoggedUser();
 
-    this.coursesService.addCourseToFavourites(id, currentUser).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(response => {
-      this.toastr.success('Success!', 'Successfully added course to favourites!');
-    }, error => {
-      this.toastr.error(`Some error occurred. ${error}`)
-    });
-  }
+		this.coursesService.addCourseToFavourites(id, currentUser).pipe(
+			takeUntil(this.destroy$)
+		).subscribe(response => {
+			this.toastr.success('Success!', 'Successfully added course to favourites!');
+		}, error => {
+			this.toastr.error(`Some error occurred. ${error}`)
+		});
+	}
 
-  onSearch(): void {
-    // get title from form
-    const searchValue = this.formGroup.controls.search.value;
-    this.getCourses(searchValue);
-  }
+	onSearch(): void {
+		// get title from form
+		const searchValue = this.formGroup.controls.search.value;
+		this.getCourses(searchValue);
+	}
 
-  onDelete(id: number): void {
-    this.coursesService.deleteCourse(id).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
-      this.getCourses();
-      this.toastr.success('Successfully deleted course!');
-    }, error => {
-      this.toastr.error('Error..', 'Some error occurred.')
-    });
-  }
+	onDelete(id: number): void {
+		this.coursesService.deleteCourse(id).pipe(
+			takeUntil(this.destroy$)
+		).subscribe(() => {
+			this.getCourses();
+			this.toastr.success('Successfully deleted course!');
+		}, error => {
+			this.toastr.error('Error..', 'Some error occurred.')
+		});
+	}
 
-  onRatingChanged(value: any): void {
-    console.log("Incoming value", value)
-    const average = (value.newRating + value.currentRating) / 2;
-  }
+	onRatingChanged(value: any): void {
+		console.log("Incoming value", value)
+		const average = (value.newRating + value.currentRating) / 2;
+	}
 
-  private getCourses(searchValue?: string): void {
-    this.coursesService.getCourses(searchValue).pipe(
-      // map(response => response.filter(x => x.name === searchValue)),
-      takeUntil(this.destroy$)
-    ).subscribe(response => {
-      this.courses = response;
-    }, error => {
-      this.toastr.error('Some error occurred while fetching courses.')
-    });
-  }
+	private getCourses(searchValue?: string): void {
+		this.coursesService.getCourses(searchValue).pipe(
+			// map(response => response.filter(x => x.name === searchValue)),
+			takeUntil(this.destroy$)
+		).subscribe(response => {
+			this.courses = response;
+		}, error => {
+			this.toastr.error('Some error occurred while fetching courses.')
+		});
+	}
 
-  private checkAdminRole = (): boolean => {
-    const user = this.authService.getLoggedUser();
-    if (user.roleId == Role.Admin) {
-      return true;
-    }
-    return false;
-  }
+	private checkAdminRole = (): boolean => {
+		const user = this.authService.getLoggedUser();
+		if (user.roleId == Role.Admin) {
+			return true;
+		}
+		return false;
+	}
 }

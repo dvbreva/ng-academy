@@ -52,6 +52,7 @@ export class CoursesService {
     }
 
     private addCourse(course: Course): Observable<Course> {
+        course.createdOn = new Date()
         return this.http.post<Course>(`${environment.apiUrl}/Courses`, course);
     }
 

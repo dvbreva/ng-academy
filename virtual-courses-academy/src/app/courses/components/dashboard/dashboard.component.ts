@@ -46,11 +46,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   onCourseSelected(id: number): void {
-  /*  const userId = this.authService.getLoggedUserId();
-    const user = this.authService.getUserById(userId).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(x => { console.log('user', x)}); */
-
     const currentUser = this.authService.getLoggedUser();
 
     this.coursesService.addCourseToFavourites(id, currentUser).pipe(
@@ -60,15 +55,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }, error => {
         alert(error)
       });
-
-      /*
-    this.coursesService.getCourseById(id).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(res => {
-      this.selectedCourseTitle = res.name;
-    }, err => {
-      console.log(err)
-    }); */
   }
 
   onSearch(): void {

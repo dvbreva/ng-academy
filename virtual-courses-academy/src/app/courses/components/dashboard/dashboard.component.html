@@ -6,11 +6,9 @@
       <form class="d-flex" [formGroup]="formGroup" (ngSubmit)="onSearch()">
         <input type="text"
                class="form-control mr-2"
-               placeholder="Search by title..."
+               placeholder="Search by name of course..."
                formControlName="search">
-
         <button class="btn btn-outline-primary">Search</button>
-        <button class="btn btn-outline-dark ml-2" (click)="onClearSearch()">Clear</button>
       </form>
     </div>
 

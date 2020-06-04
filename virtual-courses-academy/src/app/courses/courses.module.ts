@@ -7,6 +7,9 @@ import { CoursesComponent } from './courses.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddCourseComponent } from './components/add-course/add-course.component';
+import { EditCourseComponent } from './components/edit-course/edit-course.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   imports: [
@@ -15,12 +18,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     HttpClientModule,
     CourseRoutingModule,
-    NgbModule
+    NgbModule,
+    CoreModule
   ],
   declarations: [
     CoursesComponent,
     DashboardComponent,
-    CourseCardComponent
+    CourseCardComponent,
+    AddCourseComponent,
+    EditCourseComponent
   ]
 })
 export class CoursesModule { }

@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/auth/services/auth.service';
 import { takeUntil } from 'rxjs/operators';
 import { UsersService } from '../../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-profile',
@@ -24,7 +25,8 @@ export class EditProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthenticationService,
-    private userService: UsersService) {
+    private userService: UsersService,
+    private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -49,9 +51,9 @@ export class EditProfileComponent implements OnInit {
       takeUntil(this.destroy$)
     ).subscribe(() => {
       this.router.navigate(['/courses']);
-      alert("successfully edited your profile")
+      this.toastr.success('Successfully edited profile!');
     }, error => {
-      alert(error)
+      this.toastr.error('Some error occurred.')
     });
   }
 

@@ -16,7 +16,7 @@ export class CoursesService {
     getCourses(searchValue?: string): Observable<Course[]> {
         if (searchValue) {
             let params = new HttpParams();
-            params = params.append('title', searchValue);
+            params = params.append('name', searchValue);
 
             return this.http.get<Course[]>(`${environment.apiUrl}/Courses`, {
                 params

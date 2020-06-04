@@ -5,6 +5,7 @@ import { Course } from '../../models/course.interface';
 import { Subject } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CoursesService } from '../../services/course.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-edit-course',
@@ -21,7 +22,8 @@ export class EditCourseComponent implements OnInit {
     constructor(private fb: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        private courseService: CoursesService) {
+        private courseService: CoursesService,
+        private toastr: ToastrService) {
     }
 
     ngOnInit(): void {
@@ -51,8 +53,12 @@ export class EditCourseComponent implements OnInit {
 
         this.courseService.saveCourse(course).pipe(
             takeUntil(this.destroy$)
-        ).subscribe(() =>
-            this.router.navigate(['/courses/dashboard']));
+        ).subscribe(() => {
+            this.router.navigate(['/courses/dashboard']);
+            this.toastr.success('Successfully edited course!');
+        }, error => {
+            this.toastr.error('Some error occurred.')
+        });
     }
 
     private buildForm(): void {

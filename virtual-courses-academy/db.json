@@ -1,15 +1,17 @@
 {
   "Users": [
     {
+      "id": 1,
+      "name": "Admin",
       "email": "admin@admin.com",
       "password": "admin",
       "isBlocked": false,
       "roleId": 1,
       "favouriteCourses": [
         1,
-        2
-      ],
-      "id": 1
+        2,
+        4
+      ]
     },
     {
       "name": "testing adwwding 23",
@@ -50,6 +52,13 @@
       "name": "trying it out with new name",
       "description": "tgwg",
       "rating": 1
+    },
+    {
+      "name": "Charlotte TilburyT",
+      "description": "145r1mafkmjak test test test",
+      "rating": 1,
+      "createdOn": "2020-06-04T20:57:22.195Z",
+      "id": 5
     }
   ]
 }

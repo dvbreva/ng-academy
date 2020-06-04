@@ -12,6 +12,7 @@
 
             <div class="mt-1">
                 <span>Average Rating: {{course.rating | number: '1.1-2'}}</span>
+                <br/>
                 <ngb-rating [(rate)]="currentRate" (rateChange)="onRateChange()"></ngb-rating>
             </div>
         </div>

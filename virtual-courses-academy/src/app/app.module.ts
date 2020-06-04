@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
-import { ErrorMessageComponent } from './core/components/error-message/error-message.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,9 @@ import { ErrorMessageComponent } from './core/components/error-message/error-mes
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

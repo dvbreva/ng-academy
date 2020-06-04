@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthenticationService } from './auth/services/auth.service';
 import { Role } from './utils/enums/role.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit, OnDestroy {
   destroy$ = new Subject<boolean>();
 
   constructor(private authService: AuthenticationService,
-    private router: Router) {
+    private router: Router,
+    private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -36,6 +38,10 @@ export class AppComponent implements OnInit, OnDestroy {
   onLogout(): void {
     this.authService.logout();
     this.router.navigate(['auth/login']);
+    this.toastr.success('Successfully logged out!');
+    this.authService.getHasLoggedIn().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(response => this.hasLoggedUser = response);
   }
 
   private checkAdminRole = (): boolean => {

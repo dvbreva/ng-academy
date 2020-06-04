@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/auth/services/auth.service';
 import { UsersService } from '../../services/user.service';
 import { User } from 'src/app/auth/models/user.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-change-password',
@@ -22,7 +23,8 @@ export class ChangePasswordComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthenticationService,
-    private userService: UsersService) {
+    private userService: UsersService,
+    private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -42,9 +44,9 @@ export class ChangePasswordComponent implements OnInit {
       takeUntil(this.destroy$)
     ).subscribe(res => {
       this.router.navigate(['/courses']);
-      alert("successfully edited your password")
+      this.toastr.success('Successfully changed password!');
     }, error => {
-      alert(error)
+      this.toastr.error('Some error occurred.')
     });
   }
 

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CoursesService } from '../../services/course.service';
 import { takeUntil } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-course',
@@ -21,7 +22,8 @@ export class AddCourseComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
-              private courseService: CoursesService) {
+              private courseService: CoursesService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -38,8 +40,12 @@ export class AddCourseComponent implements OnInit {
 
     this.courseService.saveCourse(course).pipe(
       takeUntil(this.destroy$)
-    ).subscribe(() =>
-      this.router.navigate(['/courses/dashboard']));
+    ).subscribe(() => {
+      this.router.navigate(['/courses/dashboard'])
+      this.toastr.success('Success!', 'Successfully added course!');
+    }, error => {
+      this.toastr.error('Error..', 'Some error occurred.')
+    });
   }
 
   private buildForm(): void {

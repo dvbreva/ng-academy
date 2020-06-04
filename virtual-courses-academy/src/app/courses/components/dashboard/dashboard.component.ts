@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, map } from 'rxjs/operators';
 import { Course } from '../../models/course.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -7,6 +7,7 @@ import { CoursesService } from '../../services/course.service';
 import { AuthenticationService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/auth/models/user.interface';
 import { Role } from 'src/app/utils/enums/role.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +28,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(private coursesService: CoursesService,
     private authService: AuthenticationService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -49,25 +51,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const currentUser = this.authService.getLoggedUser();
 
     this.coursesService.addCourseToFavourites(id, currentUser).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe(response => {
-        console.log(response)
-      }, error => {
-        alert(error)
-      });
+      takeUntil(this.destroy$)
+    ).subscribe(response => {
+      this.toastr.success('Success!', 'Successfully added course to favourites!');
+    }, error => {
+      this.toastr.error(`Some error occurred. ${error}`)
+    });
   }
 
   onSearch(): void {
     // get title from form
     const searchValue = this.formGroup.controls.search.value;
-
     this.getCourses(searchValue);
-  }
-
-  onClearSearch(): void {
-    this.formGroup.get('search').setValue(null);
-
-    this.getCourses();
   }
 
   onDelete(id: number): void {
@@ -75,6 +70,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe(() => {
       this.getCourses();
+      this.toastr.success('Successfully deleted course!');
+    }, error => {
+      this.toastr.error('Error..', 'Some error occurred.')
     });
   }
 
@@ -85,18 +83,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private getCourses(searchValue?: string): void {
     this.coursesService.getCourses(searchValue).pipe(
-      // map(response => response.filter(x => x.rating > 7)),
+      // map(response => response.filter(x => x.name === searchValue)),
       takeUntil(this.destroy$)
     ).subscribe(response => {
       this.courses = response;
     }, error => {
-      console.log(error);
+      this.toastr.error('Some error occurred while fetching courses.')
     });
   }
 
   private checkAdminRole = (): boolean => {
     const user = this.authService.getLoggedUser();
-    if(user.roleId == Role.Admin) {
+    if (user.roleId == Role.Admin) {
       return true;
     }
     return false;

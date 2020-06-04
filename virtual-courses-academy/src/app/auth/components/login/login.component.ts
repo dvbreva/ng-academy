@@ -43,8 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             takeUntil(this.destroy$)
         ).subscribe(response => {
             if (!response) {
-                this.errorMessage = 'Invalid email or password.';
-
+                this.toastr.error('Invalid email or password.')
                 return;
             }
 

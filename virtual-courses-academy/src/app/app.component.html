@@ -1,33 +1,33 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">VCA</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+   <a class="navbar-brand" href="#">VCA</a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav"
-    [ngClass]="hasLoggedUser ? 'justify-content-between' : 'justify-content-end'">
-    <ul class="navbar-nav" *ngIf="hasLoggedUser">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/courses/dashboard">Courses</a>
-      </li>
-      <li class="nav-item" *ngIf="isAdmin">
-        <a class="nav-link" routerLink="users/management">Users Management</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="users/edit-profile">Edit Profile</a>
-      </li>
-    </ul>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarNav"
+      [ngClass]="hasLoggedUser ? 'justify-content-between' : 'justify-content-end'">
+      <ul class="navbar-nav" *ngIf="hasLoggedUser">
+         <li class="nav-item">
+            <a class="nav-link" routerLink="/courses/dashboard">Courses</a>
+         </li>
+         <li class="nav-item" *ngIf="isAdmin">
+            <a class="nav-link" routerLink="users/management">Users Management</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" routerLink="users/edit-profile">Edit Profile</a>
+         </li>
+      </ul>
 
-    <span class="navbar-text">
-      <button *ngIf="hasLoggedUser" class="btn btn-link" (click)="onLogout()">Log Out</button>
+      <span class="navbar-text">
+         <button *ngIf="hasLoggedUser" class="btn btn-link logout-btn" (click)="onLogout()">Log Out</button>
 
-      <a *ngIf="!hasLoggedUser" class="btn btn-link" routerLink="auth/login">Log In</a>
-    </span>
-  </div>
+         <a *ngIf="!hasLoggedUser" class="btn btn-link" routerLink="auth/login">Log In</a>
+      </span>
+   </div>
 </nav>
 
 <div class="container mt-4">
-  <h1>Virtual courses academy</h1>
-  <router-outlet></router-outlet>
+   <h1>Virtual courses academy</h1>
+   <router-outlet></router-outlet>
 </div>

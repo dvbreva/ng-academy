@@ -15,7 +15,7 @@
     },
     {
       "name": "testing adwwding 23",
-      "email": "tes2et@test.com",
+      "email": "test@test.com",
       "password": "test123",
       "isBlocked": true,
       "roleId": 0,

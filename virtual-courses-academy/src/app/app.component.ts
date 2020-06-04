@@ -2,8 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
 import { AuthenticationService } from './auth/services/auth.service';
 import { Role } from './utils/enums/role.enum';
+
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { takeUntil, map } from 'rxjs/operators';
-import { Course } from '../../models/course.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import { Course } from '../../models/course.interface';
 import { CoursesService } from '../../services/course.service';
 import { AuthenticationService } from 'src/app/auth/services/auth.service';
-import { User } from 'src/app/auth/models/user.interface';
 import { Role } from 'src/app/utils/enums/role.enum';
+
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+
+import { AuthenticationService } from '../../services/auth.service';
 import { User } from '../../models/user.interface';
-import { Router } from '@angular/router';
 import { FormValidators } from '../../validators/form.validator';
 import { ToastrService } from 'ngx-toastr';
 

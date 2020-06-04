@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from '../../models/course.interface';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Subject } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CoursesService } from '../../services/course.service';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
+import { CoursesService } from '../../services/course.service';
+import { Course } from '../../models/course.interface';
+
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
